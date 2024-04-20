@@ -49,5 +49,5 @@ Route::get('/',function(){
     return view('welcome');
 });
 
-Route::get('/kategori/create',[KategoriController::class,'create']);
+Route::get('/kategori/create',[KategoriController::class,'create'])->name('/kategori/create');
 Route::post('/kategori',[KategoriController::class,'store']);
