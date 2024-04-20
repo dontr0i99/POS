@@ -387,6 +387,13 @@ return [
             'icon_color' => 'cyan',
             'url' => '#',
         ],
+        ['header' => 'Menu'],
+        [
+            'text' => 'Manage Kategori',
+            'url' => '/kategori',
+            'icon' => 'far fa-fw fa-square',
+            'label_color' => 'success',
+        ],
     ],
 
     /*
