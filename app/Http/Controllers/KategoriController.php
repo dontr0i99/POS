@@ -40,4 +40,20 @@ class KategoriController extends Controller
         ]);
         return redirect('/kategori');
     }
+    public function edit($id)
+    {
+        $user = KategoriModel::find($id);
+        return view('kategori/edit', ['data' => $user]);
+    }
+    public function edit_save($id, Request $request)
+    {
+        $kategori = KategoriModel::find($id);
+
+        $kategori->kategori_kode = $request->kodeKategori;
+        $kategori->kategori_nama = $request->namaKategori;
+
+        $kategori->save();
+
+        return redirect('/kategori');
+    }
 }
