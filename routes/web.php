@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LevelCotroller;
 use App\Http\Controllers\PenjualanController;
+use App\Http\Controllers\POSController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UsersController;
@@ -58,3 +59,5 @@ Route::get('/kategori/hapus/{id}', [KategoriController::class, 'hapus'])->name('
 
 Route::get('/user/create',[UsersController::class,'create'])->name('/user/create');
 Route::get('/level/create',[LevelCotroller::class,'create'])->name('/level/create');
+
+Route::resource('m_user',POSController::class);

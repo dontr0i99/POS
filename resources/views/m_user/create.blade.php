@@ -1,44 +1,52 @@
-@extends('layouts.app')
-{{-- Customize layout section --}}
-@section('subtitle','User')
-@section('content_header_title','User')
-@section('content_header_subtitle','Create')
-{{-- Content body: main page content --}}
+@extends('m_user/template')
 @section('content')
-    <div class="container">
-        <div class="card card-primary">
-            <div class="card-header">
-                <h3 class="card-title">Buat User Baru</h3>
-            </div>
-
-            <form method="POST" action="../kategori">
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="text" class="form-control" id="username" name="username" placeholder="userame">
-                    </div>
-                    <div class="form-group">
-                        <label for="nama">Nama</label>
-                        <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama">
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input id="password" type="password" name="password" placeholder="Password" class=" form-control @error('password')
-                            is-invalid
-                        @enderror">
-                        @error('password')
-                            <div class="alert alert-danger">{{ $message}}</div>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="level">Level</label>
-                        <input type="text" class="form-control" id="level" name="level" placeholder="level">
-                    </div>
-                </div>
-                <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-            </form>
-        </div>
-    </div>
+<div class="row mt-5 mb-5">
+<div class="col-lg-12 margin-tb">
+<div class="float-left">
+<h2>Membuat Daftar User</h2>
+</div>
+<div class="float-right">
+<a class="btn btn-secondary" href="{{ route('m_user.index') }}">
+Kembali</a>
+</div>
+</div>
+</div>
+@if ($errors->any())
+<div class="alert alert-danger">
+<strong>Ops</strong> Input gagal<br><br>
+<ul>
+@foreach ($errors->all() as $error)
+<li>{{ $error }}</li>
+@endforeach
+</ul>
+</div>
+@endif
+<form action="{{ route('m_user.store') }}" method="POST">
+@csrf
+<div class="col-xs-12 col-sm-12 col-md-12">
+<div class="form-group">
+<strong>Username:</strong>
+<input type="text" name="username" class="form-control"
+placeholder="Masukkan username"></input>
+</div>
+</div>
+<div class="col-xs-12 col-sm-12 col-md-12">
+<div class="form-group">
+<strong>nama:</strong>
+<input type="text" name="nama" class="form-control"
+placeholder="Masukkan nama"></input>
+</div>
+</div>
+<div class="col-xs-12 col-sm-12 col-md-12">
+<div class="form-group">
+<strong>Password:</strong>
+<input type="password" name="password" class="form-control"
+placeholder="Masukkan password"></input>
+</div>
+</div>
+<div class="col-xs-12 col-sm-12 col-md-12 text-center">
+<button type="submit" class="btn btn-primary">Submit</button>
+</div>
+</div>
+</form>
 @endsection
