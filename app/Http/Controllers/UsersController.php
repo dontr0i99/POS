@@ -25,9 +25,9 @@ class UsersController extends Controller
         ];
 
         $activeMenu = 'user'; //set menu yang sedang aktif
-        // $level = LevelModel::all();
+        $level = LevelModel::all();
 
-        return view('m_user.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu]);
+        return view('m_user.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'level' => $level, 'activeMenu' => $activeMenu]);
 
     }
 
@@ -36,6 +36,11 @@ class UsersController extends Controller
     {
     $users = UserModel::select('user_id', 'username', 'nama', 'level_id')
     ->with('level');
+
+    if ($request->level_id){
+        $users->where('level_id', $request->level_id);
+    }
+
     return DataTables::of($users)
         ->addIndexColumn()
         ->addColumn('aksi', function ($user) {
