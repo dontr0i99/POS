@@ -8,6 +8,8 @@ use App\Http\Controllers\POSController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\WelcomeController;
+use App\Models\UserModel;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -61,3 +63,16 @@ Route::get('/user/create',[UsersController::class,'create'])->name('/user/create
 Route::get('/level/create',[LevelCotroller::class,'create'])->name('/level/create');
 
 Route::resource('m_user',POSController::class);
+
+Route::get('/',[WelcomeController::class,'index']);
+
+Route::group (['prefix' =>'user'],function(){
+    Route::get('/',[UsersController::class,'index']);
+    Route::post('/list',[UsersController::class,'list']);
+    Route::get('/create',[UsersController::class,'create']);
+    Route::post('/',[UsersController::class,'store']);
+    Route::get('/{id}',[UsersController::class,'show']);
+    Route::get('/{id}/edit',[UsersController::class,'edit']);
+    Route::put('/{id}',[UsersController::class,'update']);
+    Route::delete('/{id}',[UsersController::class,'destroy']);
+});
